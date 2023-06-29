@@ -50,12 +50,13 @@ return result
 }
 function game(){
 let finalMessage
-    for (i=0;i<5;i++){
+let score=0
+for (i=0;i<5;i++){
   let result=playRound()
-   let score=0
+  
   score =(result==='win')?score++:
          (result==='tie')?score+=0.5:
-         score=score;
+        score+=0;
   if(i===4) {
     if(score>2.5){
     finalMessage=console.log(`You had a score of ${score},You win`)
