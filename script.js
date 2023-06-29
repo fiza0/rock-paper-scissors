@@ -54,7 +54,7 @@ let finalMessage
 let score=0
 for (i=0;i<5;i++){
   let result=playRound()
-  score =(result==='win')?score++:
+  score =(result==='win')?++score:
          (result==='tie')?score+=0.5:
         score+=0;
   if(i===4) {
