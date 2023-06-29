@@ -10,3 +10,8 @@ function getComputerChoice() {
     }
     return computerSelection
 }
+function getUserChoice() {
+    let playerSelection
+    playerSelection=prompt('choose your hand!').toLowerCase()
+    return playerSelection
+}
