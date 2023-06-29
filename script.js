@@ -43,12 +43,28 @@ function playRound() {
         result='loss'
     } else{
         resultMessage='not a real hand!'
+        result='loss'
     }
 console.log(resultMessage)
 return result
 }
 function game(){
-for (i=0;i<=5;i++){
-    
+let finalMessage
+    for (i=0;i<5;i++){
+  let result=playRound()
+   let score=0
+  score =(result==='win')?score++:
+         (result==='tie')?score+=0.5:
+         score=score;
+  if(i===4) {
+    if(score>2.5){
+    finalMessage=console.log(`You had a score of ${score},You win`)
+    }else if(score===2.5){
+    finalMessage=console.log(`You had a score of ${score},It's a tie`)
+    }else {
+    finalMessage=console.log(`You had a score of ${score},You lose`)
+    }
+  }  
 }
+return finalMessage
 }
