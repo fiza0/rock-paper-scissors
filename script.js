@@ -1,13 +1,17 @@
 console.log(game())
 function getComputerChoice() {
     let computerSelection
-    computerSelection=Math.random()
-    if (computerSelection<=(1/3)) {
-        computerSelection='rock'
-    } else if (computerSelection>(1/3)&&computerSelection<=(2/3)) {
-        computerSelection='paper'
-    } else{
-        computerSelection='scissors'
+    computerSelection=Math.floor(Math.random()*3)
+    switch(computerSelection){
+        case 0:
+            computerSelection='rock'
+        break;
+        case 1:
+            computerSelection='paper'
+        break;
+        case 2:
+            computerSelection='scissors'
+        break
     }
     return computerSelection
 }
