@@ -17,7 +17,7 @@ function getComputerChoice() {
 }
 function getPlayerChoice() {
     let playerSelection
-    playerSelection=prompt('choose your hand!').toLowerCase()
+    playerSelection=prompt('choose your hand!').toLowerCase().trim()
     return playerSelection
 }
 function playRound() {
