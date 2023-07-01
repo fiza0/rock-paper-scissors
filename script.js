@@ -48,7 +48,7 @@ function playRound() {
         result='loss'
     } else{
         resultMessage='not a real hand!'
-        result='loss'
+        result='tie'
     }
 console.log(resultMessage)
 return result
