@@ -1,4 +1,3 @@
-console.log(game())
 function getComputerChoice() {
     let computerSelection
     computerSelection=Math.floor(Math.random()*3)
@@ -15,16 +14,12 @@ function getComputerChoice() {
     }
     return computerSelection
 }
-function getPlayerChoice() {
-    let playerSelection
-    playerSelection=prompt('choose your hand!').toLowerCase().trim()
-    return playerSelection
-}
-function playRound() {
-    let computerSelection=getComputerChoice()
-    let playerSelection=getPlayerChoice()
+
+
+function playRound(playerSelection,computerSelection) {
     let resultMessage
     let result
+    computerSelection=getComputerChoice()
     if(computerSelection===playerSelection){
         resultMessage='It\'s a tie!'
         result='tie'
@@ -53,3 +48,10 @@ function playRound() {
 console.log(resultMessage)
 return result
 }
+const buttons=document.querySelectorAll('.btn')
+buttons.forEach(button=>{
+    button.addEventListener('click',()=>{
+        playRound(button.id)
+    })
+})
+
