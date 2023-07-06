@@ -45,7 +45,10 @@ function playRound(playerSelection,computerSelection) {
         resultMessage='not a real hand!'
         result='tie'
     }
-console.log(resultMessage)
+const results=document.querySelector('.results-container')
+let resultMessageshown=document.createElement('p')
+resultMessageshown.textContent=resultMessage
+results.appendChild(resultMessageshown)
 return result
 }
 const buttons=document.querySelectorAll('.btn')
@@ -54,4 +57,6 @@ buttons.forEach(button=>{
         playRound(button.id)
     })
 })
+
+
 
