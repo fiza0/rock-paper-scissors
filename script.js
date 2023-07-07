@@ -47,20 +47,24 @@ function playRound(playerSelection){
     return result
 }
 
-
-
-
 let btns=document.querySelectorAll('.btn')
 btns.forEach(button=>{
     button.addEventListener('click',()=>
     {function getPlayerSelection(){
     let playerSelection
     let id=button.id
-    if(id==='rock')playerSelection=rock
-    if(id==='paper')playerSelection=paper
-    if(id==='scissors')playerSelection=scissors
+    if(id==='rock'){
+        playerSelection=rock
+    }
+    if(id==='paper'){
+        playerSelection=paper
+    }
+    if(id==='scissors'){
+        playerSelection=scissors
+    }
     return playerSelection
 }
-    playRound(getPlayerSelection)}
+    playRound(getPlayerSelection)
+}
 )
 })
