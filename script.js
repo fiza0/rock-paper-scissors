@@ -13,24 +13,11 @@ function getComputerSelection(){
     if(computerSelection===2)computerSelection=scissors
     return computerSelection
 }
-//for each button, assign a player selection based on the id
 
-function getPlayerSelection(){
-    let buttons=document.querySelectorAll('.btn')
-    buttons.forEach(button=>{
-        let playerSelection
-        let id=button.id
-        if(id==='rock')playerSelection=rock
-        if(id==='paper')playerSelection=paper
-        if(id==='scissors')playerSelection=scissors
-    })
-    return playerSelection
-}
 //
 
-function playRound(getComputerSelection,getPlayerSelection){
+function playRound(playerSelection){
     let computerSelection=getComputerSelection()
-    let playerSelection=getPlayerSelection()
     let playerScore=0
     let computerScore=0
     let resultMessage
@@ -45,17 +32,35 @@ function playRound(getComputerSelection,getPlayerSelection){
         resultMessage='It\'s a tie!'
         result='tie'
     }
-    return resultMessage,result
-    assignScore()
-}
-
-function assignScore(){
+    
+    
     if(result==='win'){
         ++playerScore
     }else if(result==='loss'){
         ++computerScore
     }
-    resultsSection=document.querySelector('.result-section')
+    resultsSection=document.querySelector('.results-section')
     resultOfRound=document.createElement('p')
+    resultOfRound.textContent=resultMessage
     resultsSection.appendChild(resultOfRound)
+    
+    return result
 }
+
+
+
+
+let btns=document.querySelectorAll('.btn')
+btns.forEach(button=>{
+    button.addEventListener('click',()=>
+    {function getPlayerSelection(){
+    let playerSelection
+    let id=button.id
+    if(id==='rock')playerSelection=rock
+    if(id==='paper')playerSelection=paper
+    if(id==='scissors')playerSelection=scissors
+    return playerSelection
+}
+    playRound(getPlayerSelection)}
+)
+})
