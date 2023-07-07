@@ -1,6 +1,8 @@
 let rock={name:'rock',beats:'scissors'}
 let paper={name:'paper',beats:'rock'}
 let scissors={name:'scissors',beats:'paper'}
+let playerScore=0
+let computerScore=0
 
 function getComputerSelection(){
     let computerSelection=Math.floor(Math.random()*3)
@@ -26,8 +28,6 @@ btns.forEach(button=>{
                 playerSelection=scissors
             }
             let computerSelection=getComputerSelection()
-            let playerScore=0
-            let computerScore=0
             let resultMessage
             let result
             if(computerSelection.name===playerSelection.beats){
@@ -50,9 +50,16 @@ btns.forEach(button=>{
             resultsSection=document.querySelector('.results-section')
             resultOfRound=document.createElement('p')
             resultOfRound.textContent=resultMessage
-            resultsSection.appendChild(resultOfRound)
+            resultsSection.appendChild(resultOfRound) 
+            playerScoreDOM=document.querySelector('.player-score')
+            computerScoreDOM=document.querySelector('.computer-score')
+            playerScoreOfRound=document.createElement('p')
+            playerScoreOfRound.textContent=`${playerScore}`
+            computerScoreOfRound=document.createElement('p')
+            computerScoreOfRound.textContent=`${computerScore}`
+            playerScoreDOM.appendChild(playerScoreOfRound)
+            computerScoreDOM.appendChild(computerScoreOfRound)
             
-            return result
         
 })
     
