@@ -54,9 +54,30 @@ return result
 const buttons=document.querySelectorAll('.btn')
 buttons.forEach(button=>{
     button.addEventListener('click',()=>{
-        playRound(button.id)
+        while(true){
+            let playerScore=0
+            let computerScore=0
+            playRound(button.id)
+            if(result==='win'){
+                ++playerScore
+            }else if (result==='loss'){
+                ++computerScore
+            }else{
+                continue
+            }
+            const score=document.querySelector('.score')
+            currentPlayerScore=document.createElement('p')
+            currentComputerScore=document.createElement('p')
+            score.append(currentPlayerScore,currentComputerScore)
+            if(playerScore===5||computerScore===5){
+                break
+                const finalResult=document.querySelector('.finalResult')
+                finall
+            }
+        }
     })
 })
+
 
 
 
