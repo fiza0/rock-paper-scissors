@@ -12,10 +12,9 @@ function getComputerSelection(){
     return computerSelection
 }
 
-
 let btns=document.querySelectorAll('.btn')
 btns.forEach(button=>{
-    button.addEventListener('click',()=>{
+    button.addEventListener('click',playGame=()=>{
             let playerSelection
             let id=button.id
             if(id==='rock'){
@@ -59,9 +58,18 @@ btns.forEach(button=>{
             computerScoreOfRound.textContent=`${computerScore}`
             playerScoreDOM.appendChild(playerScoreOfRound)
             computerScoreDOM.appendChild(computerScoreOfRound)
-            
-        
+
+if(playerScore===5||computerScore===5){
+    alert('game over')
+    btns.forEach(button=>{
+        button.disabled=true
+    }) 
+}        
 })
     
 })
+
+
+
+
 
