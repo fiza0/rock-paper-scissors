@@ -1,82 +1,85 @@
-function getComputerChoice() {
-    let computerSelection
-    computerSelection=Math.floor(Math.random()*3)
-    switch(computerSelection){
-        case 0:
-            computerSelection='rock'
-        break;
-        case 1:
-            computerSelection='paper'
-        break;
-        case 2:
-            computerSelection='scissors'
-        break
-    }
+let rock={name:'rock',beats:'scissors'}
+let paper={name:'paper',beats:'rock'}
+let scissors={name:'scissors',beats:'paper'}
+let playerScore=0
+let computerScore=0
+
+function getComputerSelection(){
+    let computerSelection=Math.floor(Math.random()*3)
+    if(computerSelection===0)computerSelection=rock
+    if(computerSelection===1)computerSelection=paper
+    if(computerSelection===2)computerSelection=scissors
     return computerSelection
 }
 
-
-function playRound(playerSelection,computerSelection) {
-    let resultMessage
-    let result
-    computerSelection=getComputerChoice()
-    if(computerSelection===playerSelection){
-        resultMessage='It\'s a tie!'
-        result='tie'
-    } else if (playerSelection==='rock'&&computerSelection==='scissors') {
-        resultMessage='You win! rock beats scissors'
-        result='win'
-    } else if (playerSelection==='scissors'&&computerSelection==='rock') {
-        resultMessage='You lose! rock beats scissors'
-        result='loss'
-    } else if (playerSelection==='paper'&&computerSelection=='rock') {
-        resultMessage='You win! paper beats rock'
-        result='win'
-    } else if (playerSelection==='rock'&&computerSelection==='paper') {
-        resultMessage='You lose! paper beats rock'
-        result='loss'
-    } else if(playerSelection==='scissors'&&computerSelection==='paper') {
-        resultMessage='You win! scissors beats rock'
-        result='win'
-    } else if(playerSelection==='paper'&&computerSelection==='scissors'){
-        resultMessage='You lose! rock beats scissors'
-        result='loss'
-    } else{
-        resultMessage='not a real hand!'
-        result='tie'
-    }
-const results=document.querySelector('.results-container')
-let resultMessageshown=document.createElement('p')
-resultMessageshown.textContent=resultMessage
-results.appendChild(resultMessageshown)
-return result
-}
-const buttons=document.querySelectorAll('.btn')
-buttons.forEach(button=>{
-    button.addEventListener('click',()=>{
-        while(true){
-            let playerScore=0
-            let computerScore=0
-            playRound(button.id)
+let btns=document.querySelectorAll('.btn')
+btns.forEach(button=>{
+    button.addEventListener('click',playGame=()=>{
+            let playerSelection
+            let id=button.id
+            if(id==='rock'){
+                playerSelection=rock
+            }
+            if(id==='paper'){
+                playerSelection=paper
+            }
+            if(id==='scissors'){
+                playerSelection=scissors
+            }
+            let computerSelection=getComputerSelection()
+            let resultMessage
+            let result
+            if(computerSelection.name===playerSelection.beats){
+                resultMessage=`You win!${playerSelection.name} beats ${computerSelection.name} `
+                result='win'
+            }else if (computerSelection.beats===playerSelection.name){
+                resultMessage=`You lose!${computerSelection.name} beats ${playerSelection.name} `
+                result='loss'
+            }else{
+                resultMessage='It\'s a tie!'
+                result='tie'
+            }
+            
+            
             if(result==='win'){
                 ++playerScore
-            }else if (result==='loss'){
+            }else if(result==='loss'){
                 ++computerScore
-            }else{
-                continue
             }
-            const score=document.querySelector('.score')
-            currentPlayerScore=document.createElement('p')
-            currentComputerScore=document.createElement('p')
-            score.append(currentPlayerScore,currentComputerScore)
-            if(playerScore===5||computerScore===5){
-                break
-                const finalResult=document.querySelector('.finalResult')
-                finall
-            }
-        }
+            resultsSection=document.querySelector('.results-section')
+            resultsSection.textContent=resultMessage
+            playerScoreDOM=document.querySelector('.player-score')
+            playerScoreDOM.textContent=`Your score:${playerScore}`
+            computerScoreDOM=document.querySelector('.computer-score')
+            computerScoreDOM.textContent=`Computer score: ${computerScore}`
+
+if(playerScore===5||computerScore===5){
+//disable further play until player starts a new game
+    btns.forEach(button=>{
+        button.disabled=true
     })
+//resets everything to intial values
+    playerScore=0
+    playerScoreDOM.textContent=`Your score: `
+    computerScore=0
+    resultsSection.textContent=''
+    computerScoreDOM.textContent=`Computer score: `
+//creates new game button in the new game section
+    newGameButton=document.createElement('button')
+    newGameButton.textContent='start a new game?'
+    document.querySelector('.new-game').appendChild(newGameButton)
+//creates an event listener that,upon being clicked, starts a new game and deletes itself
+    newGameButton.addEventListener('click',()=>{
+        btns.forEach(button=>{
+            button.disabled=false
+            newGameButton.remove()
+        })
+    })
+}        
 })
+    
+})
+
 
 
 
