@@ -47,23 +47,34 @@ btns.forEach(button=>{
                 ++computerScore
             }
             resultsSection=document.querySelector('.results-section')
-            resultOfRound=document.createElement('p')
-            resultOfRound.textContent=resultMessage
-            resultsSection.appendChild(resultOfRound) 
+            resultsSection.textContent=resultMessage
             playerScoreDOM=document.querySelector('.player-score')
+            playerScoreDOM.textContent=`Your score:${playerScore}`
             computerScoreDOM=document.querySelector('.computer-score')
-            playerScoreOfRound=document.createElement('p')
-            playerScoreOfRound.textContent=`${playerScore}`
-            computerScoreOfRound=document.createElement('p')
-            computerScoreOfRound.textContent=`${computerScore}`
-            playerScoreDOM.appendChild(playerScoreOfRound)
-            computerScoreDOM.appendChild(computerScoreOfRound)
+            computerScoreDOM.textContent=`Computer score: ${computerScore}`
 
 if(playerScore===5||computerScore===5){
-    alert('game over')
+//disable further play until player starts a new game
     btns.forEach(button=>{
         button.disabled=true
-    }) 
+    })
+//resets everything to intial values
+    playerScore=0
+    playerScoreDOM.textContent=`Your score: `
+    computerScore=0
+    resultsSection.textContent=''
+    computerScoreDOM.textContent=`Computer score: `
+//creates new game button in the new game section
+    newGameButton=document.createElement('button')
+    newGameButton.textContent='start a new game?'
+    document.querySelector('.new-game').appendChild(newGameButton)
+//creates an event listener that,upon being clicked, starts a new game and deletes itself
+    newGameButton.addEventListener('click',()=>{
+        btns.forEach(button=>{
+            button.disabled=false
+            newGameButton.remove()
+        })
+    })
 }        
 })
     
