@@ -30,10 +30,10 @@ btns.forEach(button=>{
             let resultMessage
             let result
             if(computerSelection.name===playerSelection.beats){
-                resultMessage=`You win!${playerSelection.name} beats ${computerSelection.name} `
+                resultMessage=`You win !${playerSelection.name} beats ${computerSelection.name} `
                 result='win'
             }else if (computerSelection.beats===playerSelection.name){
-                resultMessage=`You lose!${computerSelection.name} beats ${playerSelection.name} `
+                resultMessage=`You lose !${computerSelection.name} beats ${playerSelection.name} `
                 result='loss'
             }else{
                 resultMessage='It\'s a tie!'
@@ -53,26 +53,38 @@ btns.forEach(button=>{
             computerScoreDOM=document.querySelector('.computer-score')
             computerScoreDOM.textContent=`Computer score: ${computerScore}`
 
+finalResult=document.createElement('p')
+
+if(playerScore===5){
+finalResult.textContent=`You win! ,${playerScore} to ${computerScore}`
+    
+}
+if(computerScore===5){
+    finalResult.textContent=`You lose! ,${playerScore} to ${computerScore}`
+}
+document.querySelector('.new-game').appendChild(finalResult)
+//restarts game after either player wins
 if(playerScore===5||computerScore===5){
 //disable further play until player starts a new game
     btns.forEach(button=>{
         button.disabled=true
     })
 //resets everything to intial values
+    computerScore=0
     playerScore=0
     playerScoreDOM.textContent=`Your score: `
-    computerScore=0
     resultsSection.textContent=''
     computerScoreDOM.textContent=`Computer score: `
 //creates new game button in the new game section
     newGameButton=document.createElement('button')
     newGameButton.textContent='start a new game?'
     document.querySelector('.new-game').appendChild(newGameButton)
-//creates an event listener that,upon being clicked, starts a new game and deletes itself
+//adds an event listener that,upon being clicked, starts a new game and deletes the new game button
     newGameButton.addEventListener('click',()=>{
         btns.forEach(button=>{
             button.disabled=false
             newGameButton.remove()
+            finalResult.remove()
         })
     })
 }        
