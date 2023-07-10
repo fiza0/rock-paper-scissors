@@ -1,8 +1,11 @@
-let rock={name:'rock',beats:'scissors'}
-let paper={name:'paper',beats:'rock'}
-let scissors={name:'scissors',beats:'paper'}
+//declaring global variables
+
+let rock={name:'rock',beats:'scissors',}
+let paper={name:'paper',beats:'rock',}
+let scissors={name:'scissors',beats:'paper',}
 let playerScore=0
 let computerScore=0
+//randomly generate computer selection
 
 function getComputerSelection(){
     let computerSelection=Math.floor(Math.random()*3)
@@ -11,6 +14,7 @@ function getComputerSelection(){
     if(computerSelection===2)computerSelection=scissors
     return computerSelection
 }
+//add event listener to each button
 
 let btns=document.querySelectorAll('.btn')
 btns.forEach(button=>{
@@ -39,13 +43,13 @@ btns.forEach(button=>{
                 resultMessage='It\'s a tie!'
                 result='tie'
             }
-            
-            
+//increment scores based on result of round           
             if(result==='win'){
                 ++playerScore
             }else if(result==='loss'){
                 ++computerScore
             }
+//display round results on DOM
             resultsSection=document.querySelector('.results-section')
             resultsSection.textContent=resultMessage
             playerScoreDOM=document.querySelector('.player-score')
@@ -53,43 +57,39 @@ btns.forEach(button=>{
             computerScoreDOM=document.querySelector('.computer-score')
             computerScoreDOM.textContent=`Computer score: ${computerScore}`
 
-finalResult=document.createElement('p')
-
-if(playerScore===5){
-finalResult.textContent=`You win! ,${playerScore} to ${computerScore}`
-    
-}
-if(computerScore===5){
-    finalResult.textContent=`You lose! ,${playerScore} to ${computerScore}`
-}
-document.querySelector('.new-game').appendChild(finalResult)
-//restarts game after either player wins
-if(playerScore===5||computerScore===5){
-//disable further play until player starts a new game
-    btns.forEach(button=>{
-        button.disabled=true
-    })
-//resets everything to intial values
-    computerScore=0
-    playerScore=0
-    playerScoreDOM.textContent=`Your score: `
-    resultsSection.textContent=''
-    computerScoreDOM.textContent=`Computer score: `
+            finalResult=document.createElement('p')
+            if(playerScore===5){
+            finalResult.textContent=`You win! ,${playerScore} to ${computerScore}`
+                
+            }
+            if(computerScore===5){
+                finalResult.textContent=`You lose! ,${playerScore} to ${computerScore}`
+            }
+            document.querySelector('.new-game').appendChild(finalResult)
+//restarts game after either player wins,resets variables,clears DOM,creates a new game button
+            if(playerScore===5||computerScore===5){
+                btns.forEach(button=>{
+                    button.disabled=true
+                })
+                computerScore=0
+                playerScore=0
+                playerScoreDOM.textContent=`Your score: `
+                resultsSection.textContent=''
+                computerScoreDOM.textContent=`Computer score: `
 //creates new game button in the new game section
-    newGameButton=document.createElement('button')
-    newGameButton.textContent='start a new game?'
-    document.querySelector('.new-game').appendChild(newGameButton)
+                newGameButton=document.createElement('button')
+                newGameButton.textContent='start a new game?'
+                document.querySelector('.new-game').appendChild(newGameButton)
 //adds an event listener that,upon being clicked, starts a new game and deletes the new game button
-    newGameButton.addEventListener('click',()=>{
-        btns.forEach(button=>{
-            button.disabled=false
-            newGameButton.remove()
-            finalResult.remove()
-        })
+            newGameButton.addEventListener('click',()=>{
+                newGameButton.remove()
+                finalResult.remove()
+                btns.forEach(button=>{
+                    button.disabled=false
+                }) 
+            })
+            }        
     })
-}        
-})
-    
 })
 
 
