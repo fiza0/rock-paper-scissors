@@ -79,6 +79,7 @@ btns.forEach(button=>{
 //creates new game button in the new game section
                 newGameButton=document.createElement('button')
                 newGameButton.textContent='start a new game?'
+                newGameButton.classList.add('btn')
                 document.querySelector('.new-game').appendChild(newGameButton)
 //adds an event listener that,upon being clicked, starts a new game and deletes the new game button
             newGameButton.addEventListener('click',()=>{
